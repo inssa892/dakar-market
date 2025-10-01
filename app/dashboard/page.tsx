@@ -19,11 +19,13 @@ import { useRealtimeOrders } from "@/hooks/useRealtimeOrders";
 import { useRealtimeMessages } from "@/hooks/useRealtimeMessages";
 import { ROUTES } from "@/lib/routes";
 import { supabase } from "@/lib/supabase";
+import { useRouter } from "next/navigation";
 
 export default function DashboardPage() {
-  const { profile } = useAuth();
+  const { user, profile } = useAuth();
   const { orderCounts } = useOrders();
   const { threads } = useMessages();
+  const router = useRouter();
 
   const [stats, setStats] = useState({
     totalProducts: 0,
@@ -32,6 +34,11 @@ export default function DashboardPage() {
     revenue: 0,
   });
   const [loading, setLoading] = useState(true);
+
+  // --- Protection Dashboard : redirection si pas connecté ---
+  useEffect(() => {
+    if (!loading && !user) router.replace("/login");
+  }, [user, loading, router]);
 
   // --- Charger les stats en fonction du rôle ---
   const loadAdditionalStats = useCallback(async () => {
@@ -98,7 +105,7 @@ export default function DashboardPage() {
     return `Bienvenue ${name} ! Voici votre tableau de bord ${role.toLowerCase()}.`;
   };
 
-  if (loading) {
+  if (loading || !user) {
     return (
       <div className="space-y-8">
         <div className="text-center py-8">

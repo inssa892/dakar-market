@@ -1,16 +1,18 @@
 'use client'
-import { useRouter } from 'next/navigation'
+
 import { useEffect, useState, useCallback } from 'react'
 import { supabase, Profile } from '@/lib/supabase'
 import { User } from '@supabase/auth-helpers-nextjs'
 import { toast } from 'sonner'
+import { useRouter } from 'next/navigation'
 
 export function useAuth() {
   const [user, setUser] = useState<User | null>(null)
   const [profile, setProfile] = useState<Profile | null>(null)
   const [loading, setLoading] = useState(true)
+  const router = useRouter()
 
-  // Chargement du profil utilisateur
+  // Charger profil
   const loadProfile = useCallback(async (userId: string) => {
     try {
       const { data: profile, error } = await supabase
@@ -26,22 +28,16 @@ export function useAuth() {
     }
   }, [])
 
-  // Initialisation de la session et écoute des changements d'état
+  // Initialisation session + écoute auth
   useEffect(() => {
     const getSession = async () => {
       try {
-        const {
-          data: { session },
-        } = await supabase.auth.getSession()
+        const { data: { session } } = await supabase.auth.getSession()
         setUser(session?.user ?? null)
-
-        if (session?.user) {
-          await loadProfile(session.user.id)
-        }
-
-        setLoading(false)
+        if (session?.user) await loadProfile(session.user.id)
       } catch (err) {
         console.error('Error getting session:', err)
+      } finally {
         setLoading(false)
       }
     }
@@ -51,21 +47,20 @@ export function useAuth() {
     const { data: { subscription } } = supabase.auth.onAuthStateChange(
       async (_event, session) => {
         setUser(session?.user ?? null)
-
         if (session?.user) {
           await loadProfile(session.user.id)
         } else {
           setProfile(null)
+          router.replace('/login') // redirection si déconnecté
         }
-
         setLoading(false)
       }
     )
 
     return () => subscription.unsubscribe()
-  }, [loadProfile])
+  }, [loadProfile, router])
 
-  // Rafraîchir le profil
+  // Rafraîchir profil
   const refreshProfile = useCallback(async () => {
     if (user) await loadProfile(user.id)
   }, [user, loadProfile])
@@ -83,25 +78,15 @@ export function useAuth() {
         password,
         options: {
           emailRedirectTo: `${window.location.origin}/auth/callback`,
-          data: {
-            display_name: displayName,
-            role,
-          },
+          data: { display_name: displayName, role },
         },
       })
-
       if (error) throw error
-
-      if (data.user) {
-        if (data.session) {
-          toast.success('Compte créé avec succès!')
-        } else {
-          toast.success(
-            'Compte créé! Vérifiez votre email pour confirmer votre inscription.'
-          )
-        }
-      }
-
+      toast.success(
+        data.session
+          ? 'Compte créé avec succès!'
+          : 'Compte créé! Vérifiez votre email pour confirmer.'
+      )
       return { data, error: null }
     } catch (error: any) {
       toast.error(error.message || 'Erreur lors de la création du compte')
@@ -112,13 +97,8 @@ export function useAuth() {
   // Connexion
   const signIn = async (email: string, password: string) => {
     try {
-      const { data, error } = await supabase.auth.signInWithPassword({
-        email,
-        password,
-      })
-
+      const { data, error } = await supabase.auth.signInWithPassword({ email, password })
       if (error) throw error
-
       toast.success('Welcome back!')
       return { data, error: null }
     } catch (error: any) {
@@ -128,28 +108,17 @@ export function useAuth() {
   }
 
   // Déconnexion
-  const router = useRouter()
-
   const signOut = async () => {
     try {
       await supabase.auth.signOut()
       setUser(null)
       setProfile(null)
       toast.success('Déconnecté avec succès!')
-      router.push('/login') // ← redirection vers la page de login
+      router.replace('/login')
     } catch (error: any) {
       toast.error(error.message)
     }
-}
-
-
-  return {
-    user,
-    profile,
-    loading,
-    refreshProfile,
-    signUp,
-    signIn,
-    signOut,
   }
+
+  return { user, profile, loading, refreshProfile, signUp, signIn, signOut }
 }
