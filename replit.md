@@ -50,6 +50,13 @@ The following Supabase credentials must be set in Replit Secrets:
 - ✅ Set up development workflow running on port 5000
 - ✅ Configured autoscale deployment (build: npm run build, start: npm run start)
 - ✅ Created SETUP.md guide for Supabase configuration and deployment
+- ✅ **CRITICAL FIX**: Added database trigger for automatic profile creation (20251001000000_add_profile_trigger.sql)
+  - Solves profile creation failures during email confirmation flow
+  - Removed manual profile insert from useAuth.signUp (now handled by trigger)
+  - Trigger uses SECURITY DEFINER to bypass RLS (no additional policy needed)
+  - Validates role to prevent privilege escalation (only 'client' or 'merchant' allowed)
+- ✅ Fixed hydration warning on homepage search input (added suppressHydrationWarning)
+- ✅ Removed unused import (CheckCircle) from login page
 
 ## Important Setup Notes
 ⚠️ **Supabase Configuration Required**: The app currently runs with placeholder credentials. To enable full functionality:

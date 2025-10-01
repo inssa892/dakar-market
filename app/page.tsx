@@ -273,6 +273,7 @@ export default function HomePage() {
               router.replace(`/?${params.toString()}`, { scroll: false });
             }}
             className="flex-1"
+            suppressHydrationWarning
           />
           <Select value={category} onValueChange={setCategory}>
             <SelectTrigger className="w-full md:w-48">
