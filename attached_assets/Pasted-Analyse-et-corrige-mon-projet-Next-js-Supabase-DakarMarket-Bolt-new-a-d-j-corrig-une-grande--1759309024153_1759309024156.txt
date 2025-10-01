@@ -1,0 +1,36 @@
+Analyse et corrige mon projet Next.js + Supabase (DakarMarket). 
+Bolt.new a déjà corrigé une grande partie (auth, redirections, RLS, UI, etc.) mais il a laissé des problèmes. 
+Voici ce que je veux que tu fasses :
+
+1. **Compléter ce qui manque** :
+   - Corriger les imports manquants `shadcn/ui` (button, card, badge, input, etc.).
+   - Générer les composants UI manquants de façon cohérente.
+   - S’assurer que le build passe sans erreur.
+
+2. **Stabiliser l’authentification avec Supabase** :
+   - Quand je m’inscris et clique sur le lien de confirmation email, je dois être redirigé vers `/` sans boucle infinie.
+   - La session doit rester active (pas de perte de connexion Supabase après redirection).
+   - Les produits doivent être visibles publiquement (RLS déjà activé pour lecture).
+   - Dashboard accessible uniquement aux utilisateurs connectés.
+
+3. **Corriger les bugs restants** :
+   - Vérifier toutes les pages "suspectes" (login, register, dashboard, middleware, hooks/useAuth).
+   - Optimiser la logique temps réel (`supabase.channel`) pour que les produits s’affichent sans reload manuel.
+   - Supprimer toute lenteur visible sur mobile.
+
+4. **Améliorer l’expérience mobile** :
+   - Optimiser la responsivité (header, sidebar mobile).
+   - Fluidifier les animations/transitions pour éviter les décalages.
+
+5. **Système de messagerie type WhatsApp** :
+   - Ajouter un système de messagerie interne client ↔ marchand.
+   - Chaque fiche produit doit avoir un bouton "Contacter le marchand" qui ouvre une discussion (idéalement via Supabase Realtime).
+   - Possibilité aussi de rediriger vers WhatsApp (préfixe `+221` auto ajouté pour le Sénégal).
+   - Conserver sécurité et éviter erreurs.
+
+6. **Important** :
+   - Ne pas changer le contenu des pages stables (Accueil, Produits, À propos, Contact, FAQ).
+   - Ne rien casser dans la structure existante.
+   - Adapter le projet pour que tout soit compatible avec Vercel (variables d’environnement Supabase incluses).
+
+Objectif : avoir un projet e-commerce fonctionnel, stable sur Supabase et déployable sur Vercel, avec messagerie interne/WhatsApp, sans erreurs persistantes ni lenteur.

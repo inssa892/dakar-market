@@ -29,7 +29,11 @@ export default function RegisterPage() {
     const { data, error } = await signUp(email, password, displayName, role)
     
     if (data && !error) {
-      router.push('/dashboard')
+      if (data.session) {
+        router.push('/dashboard')
+      } else {
+        router.push('/login?message=check_email')
+      }
     }
     
     setLoading(false)

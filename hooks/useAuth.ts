@@ -68,6 +68,7 @@ export function useAuth() {
         email,
         password,
         options: {
+          emailRedirectTo: `${window.location.origin}/auth/callback`,
           data: {
             display_name: displayName,
             role,
@@ -78,22 +79,16 @@ export function useAuth() {
       if (error) throw error
 
       if (data.user) {
-        await supabase
-          .from('profiles')
-          .insert([
-            {
-              id: data.user.id,
-              email: data.user.email!,
-              display_name: displayName,
-              role,
-            }
-          ])
+        if (data.session) {
+          toast.success('Compte créé avec succès!')
+        } else {
+          toast.success('Compte créé! Vérifiez votre email pour confirmer votre inscription.')
+        }
       }
 
-      toast.success('Account created successfully!')
       return { data, error: null }
     } catch (error: any) {
-      toast.error(error.message)
+      toast.error(error.message || 'Erreur lors de la création du compte')
       return { data: null, error }
     }
   }

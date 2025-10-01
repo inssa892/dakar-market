@@ -26,8 +26,9 @@
    a. Go to your Supabase Dashboard > SQL Editor
    
    b. Run the migration files in order:
-      - `20250927175831_broad_marsh.sql`
-      - `20250929083000_gentle_star.sql`
+      - `20250927175831_broad_marsh.sql` (Creates tables and RLS policies)
+      - `20250929083000_gentle_star.sql` (Adds images column)
+      - `20251001000000_add_profile_trigger.sql` (Adds automatic profile creation trigger - IMPORTANT for email confirmation flow)
 
 3. **Test the Application**
    
