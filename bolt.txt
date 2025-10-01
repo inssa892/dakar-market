@@ -1,0 +1,100 @@
+Contexte :
+Nous avons commencé un projet e-commerce avec Next.js 13 (App Router) + TypeScript + TailwindCSS + Supabase. Le projet fonctionne partiellement : les pages Products et dashboard marchand existent, mais certaines fonctionnalités manquent ou ne sont pas totalement intégrées.
+
+Vous devez prendre le code existant que je fournis, continuer dans sa logique, analyser toutes les pages, et compléter les fonctionnalités restantes.
+
+Objectifs :
+
+Produits / Recherche / Filtres / Tri
+
+La recherche doit être live, lettre par lettre, sur titre et description.
+
+Doit fonctionner aussi bien depuis la page Products, le header, et le sidebar mobile.
+
+Filtre par catégorie et tri dynamique (par date, prix, nom).
+
+Mise à jour en temps réel via Supabase.
+
+Les résultats doivent afficher le prix en FCFA.
+
+Si aucune correspondance, afficher un message clair en français.
+
+Dashboard Marchand
+
+Pages existantes : principal, ajouter produit, modifier produit.
+
+Compléter toutes les fonctionnalités manquantes : modification, suppression, affichage en temps réel.
+
+Ajouter un badge compteur dynamique pour le nombre de produits.
+
+Tout texte non traduit en français doit l’être.
+
+Header et Sidebar
+
+Les recherches et filtres sur header/sidebar doivent interagir avec ProductsPage.
+
+Si l’utilisateur appuie sur Entrée dans le header ou sidebar, la page Products doit se mettre à jour automatiquement avec la query.
+
+Les filtres et recherches doivent être synchronisés sur toutes les pages.
+
+Produits Grid
+
+Carte produit réutilisable (ProductCard) déjà existante.
+
+Boutons Ajouter au panier, Contacter le marchand.
+
+Nombre de résultats dynamique.
+
+Affichage responsive (mobile/tablette/desktop).
+
+Supabase
+
+Authentification client et marchand.
+
+Gestion des rôles (client / merchant).
+
+Abonnements en temps réel pour produits et panier.
+
+Requêtes sécurisées selon le rôle.
+
+Gestion des erreurs avec toast (messages d’erreur en français).
+
+UI / UX
+
+Loader / spinner pour toutes les opérations asynchrones.
+
+Formulaires ajout/modification produit fonctionnels et traduits.
+
+Badge compteur pour filtres actifs et nombre de produits.
+
+Interface cohérente avec la démo ACME, mais en français et prix en FCFA.
+
+Corrections et optimisations
+
+Debounce pour recherche live.
+
+Eviter toutes les erreurs déjà rencontrées :
+
+module not found
+
+syntax errors
+
+Requêtes Supabase incorrectes.
+
+Code propre, commenté et maintenable.
+
+Instructions à Bolt.new :
+
+Prends le code existant tel quel, ne recommence pas à zéro.
+
+Analyse toutes les pages existantes et complète ce qui manque pour que tout soit fonctionnel.
+
+Traduire les textes non traduits en français.
+
+Convertir les prix en FCFA partout.
+
+Synchroniser la recherche et les filtres du header/sidebar avec ProductsPage.
+
+Assurer que toutes les requêtes Supabase et abonnements temps réel fonctionnent correctement.
+
+Respecter la logique et la structure du code déjà écrit.

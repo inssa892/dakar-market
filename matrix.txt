@@ -1,0 +1,129 @@
+/workspaces/speee
+├── .bolt/
+├── .codesandbox/
+├── .eslintrc.json
+├── .git/
+├── .gitignore
+├── README.md
+├── app/
+│   ├── about/
+│   │   └── page.tsx
+│   ├── contact/
+│   │   └── page.tsx
+│   ├── dashboard/
+│   │   ├── cart/
+│   │   │   └── page.tsx
+│   │   ├── favorites/
+│   │   │   └── page.tsx
+│   │   ├── layout.tsx
+│   │   ├── messages/
+│   │   │   └── page.tsx
+│   │   ├── orders/
+│   │   │   └── page.tsx
+│   │   ├── page.tsx
+│   │   ├── products/
+│   │   │   ├── add/
+│   │   │   ├── edit/
+│   │   │   │   └── [id]/
+│   │   │   │       └── page.tsx
+│   │   │   └── page.tsx
+│   │   └── settings/
+│   │       └── page.tsx
+│   ├── faq/
+│   │   └── page.tsx
+│   ├── globals.css
+│   ├── layout.tsx
+│   ├── login/
+│   │   └── page.tsx
+│   ├── page.tsx
+│   └── register/
+│       └── page.tsx
+├── bolt.txt
+├── components/
+│   ├── AvatarUploader.tsx
+│   ├── Header.tsx
+│   ├── MessageThread.tsx
+│   ├── OrderList.tsx
+│   ├── ProductCard.tsx
+│   ├── Sidebar.tsx
+│   ├── TestAccountButtons.tsx
+│   ├── ThemeProvider.tsx
+│   ├── VoiceAssistant.tsx
+│   └── ui/
+│       ├── accordion.tsx
+│       ├── alert-dialog.tsx
+│       ├── alert.tsx
+│       ├── aspect-ratio.tsx
+│       ├── avatar.tsx
+│       ├── badge.tsx
+│       ├── breadcrumb.tsx
+│       ├── button.tsx
+│       ├── calendar.tsx
+│       ├── card.tsx
+│       ├── carousel.tsx
+│       ├── chart.tsx
+│       ├── checkbox.tsx
+│       ├── collapsible.tsx
+│       ├── command.tsx
+│       ├── context-menu.tsx
+│       ├── dialog.tsx
+│       ├── drawer.tsx
+│       ├── dropdown-menu.tsx
+│       ├── form.tsx
+│       ├── hover-card.tsx
+│       ├── input-otp.tsx
+│       ├── input.tsx
+│       ├── label.tsx
+│       ├── menubar.tsx
+│       ├── navigation-menu.tsx
+│       ├── pagination.tsx
+│       ├── popover.tsx
+│       ├── progress.tsx
+│       ├── radio-group.tsx
+│       ├── resizable.tsx
+│       ├── scroll-area.tsx
+│       ├── select.tsx
+│       ├── separator.tsx
+│       ├── sheet.tsx
+│       ├── skeleton.tsx
+│       ├── slider.tsx
+│       ├── sonner.tsx
+│       ├── switch.tsx
+│       ├── table.tsx
+│       ├── tabs.tsx
+│       ├── textarea.tsx
+│       ├── toast.tsx
+│       ├── toaster.tsx
+│       ├── toggle-group.tsx
+│       ├── toggle.tsx
+│       └── tooltip.tsx
+├── components.json
+├── hooks/
+│   ├── use-toast.ts
+│   ├── useAuth.ts
+│   ├── useConversation.ts
+│   ├── useMessages.ts
+│   ├── useOrders.ts
+│   ├── useRealtimeMessages.ts
+│   └── useRealtimeOrders.ts
+├── lib/
+│   ├── api.ts
+│   ├── routes.ts
+│   ├── supabase.ts
+│   ├── testAccounts.ts
+│   └── utils.ts
+├── middleware.ts
+├── next.config.js
+├── node_modules/
+├── package-lock.json
+├── package.json
+├── pnpm-lock.yaml
+├── postcss.config.js
+├── supabase/
+│   └── migrations/
+│       ├── 20250927175831_broad_marsh.sql
+│       └── 20250929083000_gentle_star.sql
+├── tailwind.config.ts
+├── tsconfig.json
+└── types/
+    └── database.ts
