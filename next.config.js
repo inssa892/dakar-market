@@ -1,12 +1,21 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  reactStrictMode: true, // optionnel mais recommandé
+  reactStrictMode: true,
   webpack: (config) => {
     config.ignoreWarnings = [{ module: /@supabase\/realtime-js/ }];
     return config;
   },
   images: {
-    domains: ["fcempygvfykaxytifbop.supabase.co"], // autorise ton domaine Supabase
+    domains: ["fcempygvfykaxytifbop.supabase.co"],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: '**',
+      },
+    ],
+  },
+  experimental: {
+    serverActions: true,
   },
 };
 
