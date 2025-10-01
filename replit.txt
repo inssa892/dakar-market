@@ -1,0 +1,34 @@
+Voici mon projet Next.js 13 (App Router) + Supabase.  
+Analyse tout le code et fais les actions suivantes :  
+
+1. **Vérification et correction des fonctionnalités principales :**  
+   - Authentification : inscription, connexion, déconnexion (redirection correcte vers la page login).  
+   - Dashboard : affichage correct selon le rôle (marchand / client).  
+   - Produits : ajout, édition, suppression, gestion multi-images (array JSON en base Supabase).  
+   - Panier : ajout, suppression, affichage en temps réel.  
+   - Favoris : ajout et suppression en temps réel.  
+   - Commandes : suivi du statut, mise à jour, calcul des revenus.  
+   - Messages : réception et compteur non lus en temps réel.  
+
+2. **Corriger les erreurs répétitives rencontrées :**  
+   - Déconnexion affiche "Déconnecté avec succès" mais reste sur le dashboard (pas de `router.replace('/login')`).  
+   - Problèmes de stockage des images (`["url"]` au lieu d’un simple tableau JSON utilisable).  
+   - Boucle infinie de "Chargement du profil…" (protection mal gérée quand `profile` est null).  
+   - Affichage du dashboard qui charge sans redirection si l’utilisateur n’est pas connecté.  
+   - Skeleton UI qui tourne en boucle sans passer à l’affichage.  
+
+3. **Améliorations globales à appliquer :**  
+   - Créer un composant réutilisable `StatCard` pour toutes les stats du dashboard.  
+   - Implémenter un vrai **loading state** propre (skeletons puis affichage).  
+   - Implémenter une **protection de route** (`useEffect` qui redirige vers `/login` si pas connecté).  
+   - Améliorer la logique de récupération des stats (`useCallback` + `useEffect`).  
+   - Vérifier et activer les abonnements temps réel (`useRealtimeOrders`, `useRealtimeMessages`).  
+   - Sécuriser les accès : un client ne doit pas voir le dashboard marchand et inversement.  
+
+4. **Finalisation :**  
+   - Optimiser la gestion des rôles (merchant vs client).  
+   - Vérifier toutes les redirections après login, signup, logout.  
+   - Vérifier la cohérence des données (produits liés à un marchand, panier lié à un client, messages liés aux 2).  
+   - Nettoyer le code : pas de duplication inutile, pas de hooks appelés en boucle.  
+
+➡️ Objectif final : un projet Next.js + Supabase **fonctionnel de bout en bout**, avec toutes les fonctionnalités temps réel, propre et optimisé.  
